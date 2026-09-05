@@ -22,6 +22,14 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}')"
 
+class Tarea(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(100), nullable=False)
+    descripcion = db.Column(db.String(300))
+    prioridad = db.Column(db.String(10), nullable=False)
+    completada = db.Column(db.Boolean, nullable=False, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
 # 3. Rutas
 
 @app.route('/')
